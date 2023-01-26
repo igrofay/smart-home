@@ -16,7 +16,13 @@ fun InitNav() {
     ){
         startGraph(navController)
         composable(MainRouting.route){
-            MainGraphContent()
+            MainGraphContent{
+                navController.navigate(StartRouting.AuthenticationRoute.route){
+                    popUpTo(
+                        MainRouting.route
+                    ) { inclusive = true }
+                }
+            }
         }
     }
 }

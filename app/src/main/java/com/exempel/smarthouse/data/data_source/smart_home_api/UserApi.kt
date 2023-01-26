@@ -13,11 +13,11 @@ class UserApi @Inject constructor(
         if (email == "test@gmail.com"){
             if (password == "123456"){
                 return UserData(
-                    username = "Oleg",
+                    username = "Lonnie Murphy",
                     email = "test@gmail.com",
-                    phone = "89501838592",
+                    phone = "2647489228",
                     gender = Gender.Male,
-                    dataOfBirth = LocalDate(1990, 9,21)
+                    dataOfBirth = "10/4/1976"
                 )
             }else{
                 throw Error("Неверный пароль")

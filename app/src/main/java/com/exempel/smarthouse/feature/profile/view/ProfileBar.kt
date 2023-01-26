@@ -1,10 +1,12 @@
 package com.exempel.smarthouse.feature.profile.view
 
+import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -13,10 +15,22 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.skydoves.landscapist.glide.GlideImage
 import com.exempel.smarthouse.R
+import com.exempel.smarthouse.domain.model.user.UserModel
+import com.exempel.smarthouse.feature.common.view_model.EventBase
+import com.exempel.smarthouse.feature.profile.model.EventProfile
+import com.exempel.smarthouse.feature.profile.model.StateEditProfile
+
 @Composable
 fun ProfileBar(
-    urlPhoto: String,
+    userModel: UserModel,
+    event:EventBase<EventProfile>,
 ) {
+    val launcher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.GetContent(),
+        onResult ={ uri: Uri? -> uri?.let { uriIsNotNull->
+            event.onEvent(EventProfile.ChangeImageProfile(uriIsNotNull.toString()))
+        } }
+    )
     Column(modifier = Modifier
         .fillMaxWidth()
         .height(300.dp)
@@ -36,12 +50,15 @@ fun ProfileBar(
                     .align(Alignment.TopCenter)
             )
             TextButton(
-                onClick = { /*TODO*/ },
+                onClick = { event.onEvent(EventProfile.SaveChanges) },
                 colors = ButtonDefaults.textButtonColors(
-                    contentColor = Color.White
+                    contentColor = Color.White,
+                    disabledContentColor = Color.White.copy(0.5f)
                 ),
                 modifier = Modifier
-                    .align(Alignment.CenterEnd)
+                    .align(Alignment.CenterEnd),
+                enabled = userModel is StateEditProfile,
+
             ) {
                 Text(
                     text = "SAVE",
@@ -55,7 +72,7 @@ fun ProfileBar(
                 .size(120.dp)
         ){
             GlideImage(
-                imageModel = urlPhoto,
+                imageModel = userModel.urlImageProfile,
                 modifier = Modifier.fillMaxSize(),
                 failure = {
                     Image(
@@ -66,7 +83,7 @@ fun ProfileBar(
                 }
             )
             FloatingActionButton(
-                onClick = { /*TODO*/ },
+                onClick = { launcher.launch("image/*") },
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
                     .size(45.dp)

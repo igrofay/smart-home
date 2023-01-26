@@ -1,5 +1,6 @@
 package com.exempel.smarthouse.data.repos
 
+import android.util.Log
 import androidx.datastore.core.DataStore
 import com.exempel.smarthouse.data.model.user.UserData
 import com.exempel.smarthouse.domain.model.error.ErrorRequest
@@ -27,7 +28,8 @@ class UserReposImpl @Inject constructor(
                 username = userModel.username,
                 phone = userModel.phone,
                 gender = userModel.gender,
-                dataOfBirth = userModel.dataOfBirth
+                dataOfBirth = userModel.dataOfBirth,
+                urlImageProfile = userModel.urlImageProfile
             )
         }
     }

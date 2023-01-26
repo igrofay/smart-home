@@ -65,9 +65,12 @@ fun DataInputCard(
             },
             textStyle =  MaterialTheme.typography.body1,
             colors = styleTextField,
-            maxLines = 1,
+            singleLine = true,
             modifier = Modifier.fillMaxWidth(0.9f),
             isError = errorInput is AuthenticationError.EmailEnteredIncorrectly,
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Email,
+            ),
         )
         AnimatedVisibility(
             visible = dataInput.type == StateAuthentication.DataInput.InputType.SignUp
@@ -83,7 +86,7 @@ fun DataInputCard(
                 },
                 textStyle =  MaterialTheme.typography.body1,
                 colors = styleTextField,
-                maxLines = 1,
+                singleLine = true,
                 modifier = Modifier.fillMaxWidth(0.9f),
                 isError = errorInput is AuthenticationError.UsernameEnteredIncorrectly,
             )
@@ -99,7 +102,7 @@ fun DataInputCard(
             },
             textStyle =  MaterialTheme.typography.body1,
             colors = styleTextField,
-            maxLines = 1,
+            singleLine = true,
             modifier = Modifier.fillMaxWidth(0.9f),
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Password,

@@ -7,6 +7,8 @@ import com.exempel.smarthouse.data.model.user.UserData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonDecoder
+import org.json.JSONException
 import java.io.InputStream
 import java.io.OutputStream
 
@@ -14,13 +16,13 @@ object UserDataSerializer : Serializer<UserData?> {
     const val nameFile = "user_data.preferences_pb"
     override val defaultValue: UserData? = null
 
-    override suspend fun readFrom(input: InputStream): UserData {
-        try {
-            return Json.decodeFromString(
+    override suspend fun readFrom(input: InputStream): UserData? {
+        return try {
+            Json.decodeFromString(
                 UserData.serializer(), input.readBytes().decodeToString()
             )
-        } catch (exception: InvalidProtocolBufferException) {
-            throw CorruptionException("Unable to read UserData", exception)
+        } catch (exception: IllegalArgumentException) {
+            defaultValue
         }
     }
 

@@ -9,5 +9,5 @@ interface UserModel{
     val email: String
     val phone: String
     val gender: Gender
-    val dataOfBirth: LocalDate
+    val dataOfBirth: String
 }

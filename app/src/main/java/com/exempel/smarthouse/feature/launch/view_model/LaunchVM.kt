@@ -29,7 +29,7 @@ class LaunchVM @Inject constructor(
             is ErrorRequest.DataNotFound ->{
                 _state.value = StateLaunch.NeedAuthentication
             }
-            else -> Log.e("LaunchVM", e.toString())
+            else -> Log.e("LaunchVM::", e.toString())
         }
     }
     override fun onEvent(event: EventLaunch) {

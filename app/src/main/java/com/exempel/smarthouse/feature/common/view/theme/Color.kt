@@ -1,0 +1,9 @@
+package com.exempel.smarthouse.feature.common.view.theme
+
+import androidx.compose.ui.graphics.Color
+
+
+val darkBlue = Color(0xFF2A2A37)
+val brickColor = Color(0xFF984E4F)
+val darkYellow = Color(0xFF8F7F00)
+val gray = Color(0xFFD3D3D3)

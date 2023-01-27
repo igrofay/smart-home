@@ -18,6 +18,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.exempel.smarthouse.feature.home.view.HomeScreen
 import com.exempel.smarthouse.feature.nav.model.MainRouting
 import com.exempel.smarthouse.feature.profile.view.ProfileScreen
 
@@ -65,7 +66,7 @@ fun MainGraphContent(
             modifier = Modifier.padding(it)
         ) {
             composable(MainRouting.HomeRoute.route) {
-
+                HomeScreen()
             }
             composable(MainRouting.Statics.route) {
                 Box(

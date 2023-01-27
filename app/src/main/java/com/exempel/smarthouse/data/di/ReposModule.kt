@@ -1,8 +1,10 @@
 package com.exempel.smarthouse.data.di
 
 import com.exempel.smarthouse.data.repos.AuthReposImpl
+import com.exempel.smarthouse.data.repos.GeocodingReposImpl
 import com.exempel.smarthouse.data.repos.UserReposImpl
 import com.exempel.smarthouse.domain.repos.AuthRepos
+import com.exempel.smarthouse.domain.repos.GeocodingRepos
 import com.exempel.smarthouse.domain.repos.UserRepos
 import dagger.Binds
 import dagger.Module
@@ -21,4 +23,7 @@ abstract class ReposModule {
     @Binds
     abstract fun authRepos(authRepos: AuthReposImpl): AuthRepos
 
+
+    @Binds
+    abstract fun geocodingRepos(geocodingRepos: GeocodingReposImpl): GeocodingRepos
 }

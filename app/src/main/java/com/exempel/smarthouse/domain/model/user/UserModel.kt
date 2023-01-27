@@ -1,7 +1,5 @@
 package com.exempel.smarthouse.domain.model.user
 
-import kotlinx.datetime.LocalDate
-
 
 interface UserModel{
     val urlImageProfile : String

@@ -12,6 +12,7 @@ import com.exempel.smarthouse.feature.profile.model.StateEditProfile
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 @HiltViewModel
@@ -64,7 +65,8 @@ class ProfileVM @Inject constructor(
             is EventProfile.InputDateOfBirth -> {
                 val value = _state.value as? StateEditProfile
                     ?: userModelToStateEditProfile()
-                _state.value = value.copy(dataOfBirth = event.value)
+                val date = event.date.format(DateTimeFormatter.ofPattern("MM/dd/uuuu"))
+                _state.value = value.copy(dataOfBirth = date)
             }
             EventProfile.SignOut -> {
                 viewModelScope.launch {

@@ -2,10 +2,6 @@ package com.exempel.smarthouse.data.model.user
 
 import com.exempel.smarthouse.domain.model.user.Gender
 import com.exempel.smarthouse.domain.model.user.UserModel
-import kotlinx.datetime.Clock
-import kotlinx.datetime.LocalDate
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.todayIn
 import kotlinx.serialization.Serializable
 
 @Serializable

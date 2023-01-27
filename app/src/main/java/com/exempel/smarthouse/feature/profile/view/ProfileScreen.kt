@@ -1,6 +1,9 @@
 package com.exempel.smarthouse.feature.profile.view
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.MaterialTheme
@@ -24,14 +27,16 @@ fun ProfileScreen(
 ) {
     val state by viewModel.state
     LazyColumn(
-        modifier = Modifier,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(18.dp)
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally
     ){
         item {
             ProfileBar(state,viewModel)
         }
-        item { ProfileEditOptions(state,viewModel) }
+        item { Spacer(modifier = Modifier.height(28.dp)) }
+        item {
+            ProfileEditOptions(state,viewModel)
+        }
         item {
             TextButton(
                 onClick = {

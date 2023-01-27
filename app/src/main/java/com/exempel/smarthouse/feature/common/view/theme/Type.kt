@@ -27,10 +27,20 @@ val Typography = Typography(
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
     ),
+    body2 = TextStyle(
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp,
+        letterSpacing = 0.25.sp
+    ),
     subtitle1 = TextStyle(
         fontWeight = FontWeight.Bold,
         fontSize = 20.sp,
         letterSpacing = 0.15.sp
+    ),
+    subtitle2 = TextStyle(
+        fontWeight = FontWeight.Normal,
+        fontSize = 18.sp,
+        letterSpacing = 0.1.sp
     ),
     caption = TextStyle(
         fontWeight = FontWeight.Bold,
@@ -42,7 +52,11 @@ val Typography = Typography(
         fontWeight = FontWeight.Bold,
         fontSize = 16.sp
     ),
-
+    h5 = TextStyle(
+        fontWeight = FontWeight.Bold,
+        fontSize = 24.sp,
+        letterSpacing = 0.sp
+    ),
     /* Other default text styles to override
 
     caption = TextStyle(

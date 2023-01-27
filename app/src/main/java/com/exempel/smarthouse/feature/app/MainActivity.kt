@@ -32,6 +32,7 @@ import com.exempel.smarthouse.feature.common.view.dimmer.Dimmer
 import com.exempel.smarthouse.feature.common.view.theme.SmartHouseTheme
 import com.exempel.smarthouse.feature.common.view.theme.darkYellow
 import com.exempel.smarthouse.feature.common.view.vertical_regulator.VerticalRegulator
+import com.exempel.smarthouse.feature.map.view.MapView
 import com.exempel.smarthouse.feature.nav.view.InitNav
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -47,7 +48,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = colors.background
                 ) {
-                   InitNav()
+                    InitNav()
                 }
             }
         }

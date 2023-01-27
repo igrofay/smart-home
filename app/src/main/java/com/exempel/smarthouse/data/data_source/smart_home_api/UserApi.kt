@@ -3,7 +3,6 @@ package com.exempel.smarthouse.data.data_source.smart_home_api
 import com.exempel.smarthouse.data.model.user.UserData
 import com.exempel.smarthouse.domain.model.user.Gender
 import kotlinx.coroutines.delay
-import kotlinx.datetime.LocalDate
 import javax.inject.Inject
 
 class UserApi @Inject constructor(

@@ -1,5 +1,6 @@
 package com.exempel.smarthouse.feature.profile.view
 
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
@@ -15,6 +16,9 @@ import com.exempel.smarthouse.domain.model.user.UserModel
 import com.exempel.smarthouse.feature.common.view.visual_transformation.PhoneVisualTransformation
 import com.exempel.smarthouse.feature.common.view_model.EventBase
 import com.exempel.smarthouse.feature.profile.model.EventProfile
+import com.vanpra.composematerialdialogs.MaterialDialog
+import com.vanpra.composematerialdialogs.datetime.date.datepicker
+import com.vanpra.composematerialdialogs.rememberMaterialDialogState
 
 @Composable
 fun ProfileEditOptions(
@@ -34,7 +38,7 @@ fun ProfileEditOptions(
         disabledTextColor = MaterialTheme.colors.primary,
     )
     Column(
-        verticalArrangement = Arrangement.spacedBy(14.dp)
+        verticalArrangement = Arrangement.spacedBy(18.dp)
     ) {
         TextField(
             value = userModel.username,
@@ -89,7 +93,7 @@ fun ProfileEditOptions(
                 keyboardType = KeyboardType.Phone,
             ),
             visualTransformation = PhoneVisualTransformation(
-                mask = "(000) 000 00 00",
+                mask = "(000)-000-0000",
                 maskNumber = '0',
             )
 //            isError = errorInput is AuthenticationError.UsernameEnteredIncorrectly,
@@ -97,7 +101,7 @@ fun ProfileEditOptions(
         var expanded by remember { mutableStateOf(false) }
 
         Box(
-            modifier = Modifier.clickable { expanded = true }
+            modifier = Modifier
         ){
             TextField(
                 value = userModel.gender.name,
@@ -112,7 +116,9 @@ fun ProfileEditOptions(
                 textStyle =  MaterialTheme.typography.subtitle1,
                 colors = styleTextField,
                 singleLine = true,
-                modifier = Modifier.fillMaxWidth(0.9f),
+                modifier = Modifier
+                    .fillMaxWidth(0.9f)
+                    .clickable { expanded = true },
                 readOnly = true,
                 enabled = false
 //            isError = errorInput is AuthenticationError.UsernameEnteredIncorrectly,
@@ -136,9 +142,10 @@ fun ProfileEditOptions(
                 }
             }
         }
+        val dialogState = rememberMaterialDialogState()
         TextField(
             value = userModel.dataOfBirth,
-            onValueChange = { event.onEvent(EventProfile.InputDateOfBirth(it)) },
+            onValueChange = {},
             label = {
                 Text(
                     "Date Of Birth",
@@ -149,11 +156,25 @@ fun ProfileEditOptions(
             textStyle = MaterialTheme.typography.subtitle1,
             colors = styleTextField,
             singleLine = true,
-            modifier = Modifier.fillMaxWidth(0.9f),
+            modifier = Modifier.fillMaxWidth(0.9f).clickable { dialogState.show() },
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number,
             ),
+            readOnly = true,
+            enabled = false
 //            isError = errorInput is AuthenticationError.UsernameEnteredIncorrectly,
         )
+        MaterialDialog(
+            dialogState = dialogState,
+            buttons = {
+                positiveButton("Ok")
+                negativeButton("Cancel")
+            }
+        ) {
+            datepicker { date ->
+                event.onEvent(EventProfile.InputDateOfBirth(date))
+            }
+        }
+
     }
 }

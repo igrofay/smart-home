@@ -34,13 +34,13 @@ fun ProfileBar(
     Column(modifier = Modifier
         .fillMaxWidth()
         .height(300.dp)
-        .background(MaterialTheme.colors.primary),
+        .background(MaterialTheme.colors.primary)
+        .padding(top = 38.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ){
         Box(
             modifier = Modifier
                 .fillMaxWidth(0.9f)
-                .padding(top = 32.dp)
         ) {
             Text(
                 text = "Profile",

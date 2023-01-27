@@ -1,10 +1,12 @@
 package com.exempel.smarthouse.feature.home.view
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
@@ -34,7 +36,9 @@ fun HomeScreen(
         Dialog(
             onDismissRequest = { visibleDialogMap = false },
         ) {
-            MapView{ geo->
+            MapView(
+                modifier = Modifier.size(320.dp)
+            ){ geo->
                 geo.geoObject.boundingBox?.northEast?.let {
                     viewModel.onEvent(EventHome.SelectedPointOnMap(it))
                     visibleDialogMap = false

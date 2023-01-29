@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.exempel.smarthouse.R
 import com.exempel.smarthouse.feature.home.model.StateHome
@@ -37,7 +38,9 @@ fun HomeBar(
             )
         }
         Row(
-            modifier = Modifier.padding(start = 20.dp),
+            modifier = Modifier
+                .padding(horizontal = 20.dp)
+                .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
@@ -49,7 +52,9 @@ fun HomeBar(
             Text(
                 text = stateHome.addressHome,
                 style = MaterialTheme.typography.body2,
-                color = Color.White
+                color = Color.White,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
             )
         }
         Spacer(modifier = Modifier.weight(1f))
